@@ -16,9 +16,32 @@ export function Home() {
       <h1 className="text-2xl font-bold text-gray-900 mb-2">
         アクセシビリティ学習
       </h1>
-      <p className="text-sm text-gray-500 mb-8">
+      <p className="text-sm text-gray-500 mb-6">
         UIパターン別にWCAG達成基準を体験的に学びます
       </p>
+
+      <section className="mb-8 p-5 rounded-xl border border-gray-200 bg-white" aria-labelledby="wcag-heading">
+        <h2 id="wcag-heading" className="font-semibold text-gray-900 mb-1">
+          WCAG 2.2 全達成基準を学ぶ
+        </h2>
+        <p className="text-sm text-gray-500 mb-4">
+          78項目の達成基準を順番に学習・テストします。
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            to="/wcag"
+            className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            達成基準一覧
+          </Link>
+          <Link
+            to="/wcag/quiz"
+            className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            全問（78問）
+          </Link>
+        </div>
+      </section>
 
       {weakThemes.length > 0 && (
         <section className="mb-8" aria-labelledby="weak-heading">
@@ -84,30 +107,7 @@ export function Home() {
         </ul>
       </section>
 
-      <section className="mt-10 p-5 rounded-xl border border-gray-200 bg-white" aria-labelledby="wcag-heading">
-        <h2 id="wcag-heading" className="font-semibold text-gray-900 mb-1">
-          WCAG 2.2 全達成基準を学ぶ
-        </h2>
-        <p className="text-sm text-gray-500 mb-4">
-          78項目の達成基準を順番に学習・テストします。
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Link
-            to="/wcag"
-            className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          >
-            達成基準一覧
-          </Link>
-          <Link
-            to="/wcag/quiz"
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          >
-            全問テストを始める
-          </Link>
-        </div>
-      </section>
-
-      <div className="mt-6 text-center">
+      <div className="mt-8 text-center">
         <Link
           to="/review"
           className="text-sm text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
