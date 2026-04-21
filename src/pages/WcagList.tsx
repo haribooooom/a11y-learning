@@ -21,17 +21,16 @@ export function WcagList() {
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
-      <nav aria-label="パンくず" className="mb-6">
+      <h1 className="text-2xl font-bold text-gray-900 mb-1">WCAG 2.2 全達成基準</h1>
+      <p className="text-sm text-gray-500 mb-4">78項目 · A / AA / AAA</p>
+      <div className="mb-6">
         <Link
-          to="/"
+          to="/themes"
           className="text-sm text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
-          ← ホームに戻る
+          テーマ別学習へ →
         </Link>
-      </nav>
-
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">WCAG 2.2 全達成基準</h1>
-      <p className="text-sm text-gray-500 mb-6">78項目 · A / AA / AAA</p>
+      </div>
 
       <section className="mb-8 p-4 rounded-xl border border-gray-200 bg-white" aria-labelledby="quiz-heading">
         <h2 id="quiz-heading" className="text-sm font-semibold text-gray-700 mb-3">テストを始める</h2>

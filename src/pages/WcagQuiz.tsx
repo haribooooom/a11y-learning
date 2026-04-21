@@ -96,7 +96,7 @@ export function WcagQuiz() {
             ホームに戻る
           </Link>
           <Link
-            to="/wcag"
+            to="/"
             className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             達成基準一覧へ
@@ -110,7 +110,7 @@ export function WcagQuiz() {
     <main className="max-w-2xl mx-auto px-4 py-10">
       <nav aria-label="パンくず" className="mb-4">
         <Link
-          to="/wcag"
+          to="/"
           className="text-sm text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           ← 達成基準一覧

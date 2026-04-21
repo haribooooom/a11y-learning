@@ -26,7 +26,7 @@ export function Review() {
           まだ間違えた問題はありません。テストに挑戦してみましょう。
         </p>
         <Link
-          to="/"
+          to="/themes"
           className="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           ホームに戻る
@@ -72,7 +72,7 @@ export function Review() {
           正答率 {Math.round((score / reviewQuestions.length) * 100)}%
         </p>
         <Link
-          to="/"
+          to="/themes"
           className="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           ホームに戻る
@@ -85,7 +85,7 @@ export function Review() {
     <main className="max-w-2xl mx-auto px-4 py-10">
       <nav aria-label="パンくず" className="mb-4">
         <Link
-          to="/"
+          to="/themes"
           className="text-sm text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           ← ホームに戻る

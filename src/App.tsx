@@ -11,11 +11,11 @@ export default function App() {
     <BrowserRouter basename="/a11y-learning">
       <div className="min-h-screen bg-gray-50 text-gray-900">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<WcagList />} />
+          <Route path="/themes" element={<Home />} />
           <Route path="/theme/:id" element={<ThemeDetail />} />
           <Route path="/theme/:id/quiz" element={<Quiz />} />
           <Route path="/review" element={<Review />} />
-          <Route path="/wcag" element={<WcagList />} />
           <Route path="/wcag/quiz" element={<WcagQuiz />} />
         </Routes>
       </div>

@@ -5,16 +5,16 @@ export function ThemeDetail() {
   const { id } = useParams<{ id: string }>()
   const theme = themes.find((t) => t.id === id)
 
-  if (!theme) return <Navigate to="/" replace />
+  if (!theme) return <Navigate to="/themes" replace />
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
       <nav aria-label="パンくず" className="mb-6">
         <Link
-          to="/"
+          to="/themes"
           className="text-sm text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
-          ← ホームに戻る
+          ← アクセシビリティ学習
         </Link>
       </nav>
 
