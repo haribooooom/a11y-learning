@@ -544,4 +544,260 @@ export const questions: Question[] = [
     explanation:
       "スクリーンリーダーユーザーはボタン・リンクの一覧を取り出してナビゲートします。同じテキストが並ぶと区別できません。各ボタンにaria-label=\"〇〇の要約をもっと見る\"と補足することで区別できるようになります（WCAG 2.4.4）。",
   },
+  {
+    id: "rw-5",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "日本語のサービスサイトで <html lang=\"en\"> のまま公開されていた。スクリーンリーダーユーザーにどんな問題が起きますか？",
+    choices: [
+      "ページの読み込みが遅くなる",
+      "音声合成エンジンが英語の発音ルールで日本語テキストを読み上げ、内容が理解不能になる",
+      "フォントが英語フォントに切り替わる",
+      "CSSが適用されなくなる",
+    ],
+    answer: 1,
+    explanation:
+      "スクリーンリーダーはlang属性を見て音声合成エンジンの言語を切り替えます。lang=\"en\"のまま日本語を読み上げると、日本語テキストが英語音のまま読まれて聞き取れません。<html lang=\"ja\">を必ず設定してください（WCAG 3.1.1）。",
+  },
+  {
+    id: "rw-6",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "サービスのトップページで <h1> がロゴと特集バナーの2箇所に設定されていた。何が問題ですか？",
+    choices: [
+      "デザインが崩れる",
+      "スクリーンリーダーユーザーがページの主題を把握できず、見出しジャンプで混乱する",
+      "SEOランキングが下がる",
+      "ブラウザがエラーを返す",
+    ],
+    answer: 1,
+    explanation:
+      "1ページにh1は1つが原則です。h1はページ全体の主題を表し、スクリーンリーダーユーザーは「このページが何について書かれているか」をh1で把握します。複数あると文書構造が曖昧になります（WCAG 1.3.1、2.4.6）。",
+  },
+  {
+    id: "rw-7",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "デザイン上の理由でCSSに `*:focus { outline: none; }` をグローバルに設定しているサイトがあった。誰にどんな影響がありますか？",
+    choices: [
+      "マウスユーザーにとって視認性が上がる",
+      "キーボードユーザーが現在フォーカスされている要素を視覚的に追えなくなり、ページ全体の操作が困難になる",
+      "スクリーンリーダーが動作しなくなる",
+      "タッチ操作に影響が出る",
+    ],
+    answer: 1,
+    explanation:
+      "outline: noneをグローバルに設定するとキーボードフォーカスが完全に見えなくなります。キーボードのみで操作するユーザー（運動障害・視覚障害）にとって致命的です。:focus-visibleを使ってキーボード操作時だけ適切なフォーカスリングを表示してください（WCAG 2.4.7）。",
+  },
+  {
+    id: "rw-8",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "ハンバーガーメニューボタンを実装するとき、開閉状態をスクリーンリーダーに伝えるために必要な属性はどれですか？",
+    choices: [
+      "aria-hidden=\"true\"",
+      "aria-expanded=\"true\" / \"false\" をボタンに付与し、開閉に合わせて切り替える",
+      "role=\"menu\"をボタンに付与する",
+      "tabindex=\"-1\"を付与する",
+    ],
+    answer: 1,
+    explanation:
+      "aria-expanded属性でボタンが制御するメニューの開閉状態をスクリーンリーダーに伝えます。メニューが開いているときtrue、閉じているときfalseに動的に切り替えます。また aria-controls で対応するメニュー要素のIDを指定するとより明確です（WCAG 4.1.2）。",
+  },
+  {
+    id: "rw-9",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "モーダルダイアログを開いたとき、フォーカスがモーダルの背後のページに残ったままだった。何が問題ですか？",
+    choices: [
+      "モーダルのアニメーションが遅い",
+      "キーボードユーザーがモーダルの内容を操作できず、背後のページのTabキー移動が続いてしまう",
+      "モーダルのz-indexが低すぎる",
+      "モーダルを閉じるボタンが見つからない",
+    ],
+    answer: 1,
+    explanation:
+      "モーダルを開いたらフォーカスをモーダル内の最初の要素（または閉じるボタン）に移動し、Tabキーがモーダル外に出ないようにフォーカストラップを実装する必要があります。閉じるときはトリガーに戻します（WCAG 2.1.2、2.4.3）。",
+  },
+  {
+    id: "rw-10",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "検索フォームに文字を入力すると候補リストが動的に表示されるが、スクリーンリーダーに候補が出たことが通知されなかった。適切な対応はどれですか？",
+    choices: [
+      "候補リストを常に表示しておく",
+      "入力欄に aria-autocomplete=\"list\" と aria-controls を設定し、候補の件数を aria-live で通知する",
+      "候補リストに display: block を使う",
+      "候補リストを別ページで開く",
+    ],
+    answer: 1,
+    explanation:
+      "動的に変化するサジェストリストは、スクリーンリーダーに更新を通知する仕組みが必要です。aria-autocomplete・aria-expanded・aria-livewを組み合わせるか、WAI-ARIAのComboboxパターンに従って実装します（WCAG 4.1.3）。",
+  },
+  {
+    id: "rw-11",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "タブUIをdivとCSSだけで実装したところ、スクリーンリーダーでタブの役割が伝わらなかった。正しいARIAの実装はどれですか？",
+    choices: [
+      "タブにrole=\"button\"を付ける",
+      "タブリストに role=\"tablist\"、各タブに role=\"tab\" と aria-selected、パネルに role=\"tabpanel\" と aria-labelledby を設定する",
+      "タブにaria-label=\"タブ\"を付ける",
+      "タブにtabindex=\"0\"を付けるだけでよい",
+    ],
+    answer: 1,
+    explanation:
+      "タブUIのARIAパターンはrole=\"tablist\"（コンテナ）・role=\"tab\"（各タブ、aria-selected）・role=\"tabpanel\"（パネル）の組み合わせが必要です。さらにキーボードは矢印キーでタブ間を移動できるよう実装します（WAI-ARIA APG Tabs Pattern / WCAG 4.1.2）。",
+  },
+  {
+    id: "rw-12",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "ヒーローエリアのカルーセルが自動で3秒ごとにスライドを切り替えていた。アクセシビリティ上の問題はどれですか？",
+    choices: [
+      "スライドの枚数が多すぎる",
+      "ユーザーが読んでいる途中でコンテンツが切り替わり、一時停止・停止手段がないと WCAG 違反になる",
+      "カルーセルのアニメーションが速すぎる",
+      "スライドの画像サイズが大きすぎる",
+    ],
+    answer: 1,
+    explanation:
+      "5秒以上継続する自動再生コンテンツには、一時停止・停止・非表示のいずれかの手段をユーザーに提供する必要があります。読字障害や注意障害のあるユーザーに特に影響します。自動再生しない設定をデフォルトにすることも推奨です（WCAG 2.2.2）。",
+  },
+  {
+    id: "rw-13",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "ログインフォームのメールアドレス・パスワード欄に autocomplete 属性が設定されていない。どんな問題がありますか？",
+    choices: [
+      "フォームのデザインが崩れる",
+      "パスワードマネージャーや支援技術が入力欄の目的を判別できず、自動入力が機能しない",
+      "フォームの送信ができなくなる",
+      "ブラウザの履歴に保存されなくなる",
+    ],
+    answer: 1,
+    explanation:
+      "autocomplete=\"email\"・autocomplete=\"current-password\"などを設定することで、パスワードマネージャーや支援技術が入力フィールドの目的を識別できます。運動障害や認知障害のあるユーザーの入力負担を大幅に下げられます（WCAG 1.3.5）。",
+  },
+  {
+    id: "rw-14",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "書籍一覧のページネーションで「1 2 3 ... 10 次へ」とリンクが並んでいる。スクリーンリーダーのリンク一覧に「2」「3」と数字だけ表示される問題の正しい修正はどれですか？",
+    choices: [
+      "数字を非表示にして「次へ」だけ残す",
+      "各リンクに aria-label=\"2ページ目\" のように補足し、ナビゲーション全体を <nav aria-label=\"ページネーション\"> で囲む",
+      "ページネーションをボタンに変更する",
+      "数字のリンクにtitle属性を付ける",
+    ],
+    answer: 1,
+    explanation:
+      "数字のみのリンクはコンテキストから切り離すと意味が分かりません。aria-labelで「2ページ目へ」と補足し、<nav aria-label=\"ページネーション\">でランドマークとして識別できるようにします（WCAG 2.4.4、2.4.1）。",
+  },
+  {
+    id: "rw-15",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "「カートに追加しました」というトースト通知が画面右下に表示されるが、スクリーンリーダーが全く読み上げなかった。どう修正すれば読み上げられますか？",
+    choices: [
+      "通知のz-indexを上げる",
+      "通知要素に role=\"status\" または aria-live=\"polite\" を付与し、DOMに動的に挿入する",
+      "通知のフォントサイズを大きくする",
+      "通知を画面中央に移動する",
+    ],
+    answer: 1,
+    explanation:
+      "スクリーンリーダーはフォーカスが当たっていない要素の変化を通常読み上げません。role=\"status\"またはaria-live=\"polite\"を設定したコンテナを最初からDOMに存在させ、テキストだけを動的に挿入することで読み上げが発火します（WCAG 4.1.3）。",
+  },
+  {
+    id: "rw-16",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "検索結果の読み込み中にスピナーアニメーションだけが表示されたが、スクリーンリーダーユーザーには何も伝わらなかった。適切な対応はどれですか？",
+    choices: [
+      "スピナーを大きくする",
+      "スピナー要素に role=\"status\" と aria-label=\"読み込み中\" を付与する",
+      "スピナーにalt=\"loading\"を付ける",
+      "スピナーをテキストに変更する",
+    ],
+    answer: 1,
+    explanation:
+      "SVGやCSSで作られたスピナーには代替テキストがありません。role=\"status\"とaria-label=\"読み込み中\"を付与するか、aria-live=\"polite\"なリージョンに状態テキストを挿入することでスクリーンリーダーに伝わります（WCAG 4.1.2、4.1.3）。",
+  },
+  {
+    id: "rw-17",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "パンくずナビが「ホーム > カテゴリ > 書籍名」と表示されているが、スクリーンリーダーでは他のナビゲーションと区別がつかなかった。どう改善しますか？",
+    choices: [
+      "パンくずを太字にする",
+      "<nav aria-label=\"パンくずリスト\"> で囲み、現在ページのリンクに aria-current=\"page\" を付与する",
+      "パンくずのリンクにtarget=\"_self\"を付ける",
+      "パンくずを<ol>から<ul>に変更する",
+    ],
+    answer: 1,
+    explanation:
+      "複数の<nav>がある場合、aria-labelで区別しないとスクリーンリーダーのランドマーク一覧で全部「ナビゲーション」と表示されます。また現在ページにaria-current=\"page\"を付けることで位置情報も伝わります（WCAG 2.4.8）。",
+  },
+  {
+    id: "rw-18",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "FAQページのアコーディオン（質問クリックで回答が開閉する）で、スクリーンリーダーが開閉状態を読み上げなかった。必要な対応はどれですか？",
+    choices: [
+      "アコーディオンをdivからpに変更する",
+      "トリガーボタンに aria-expanded=\"true/false\" を付与し、aria-controls で対応するパネルIDを指定する",
+      "パネルにdisplay: noneの代わりにvisibility: hiddenを使う",
+      "トリガーにaria-label=\"開く\"を固定で付ける",
+    ],
+    answer: 1,
+    explanation:
+      "aria-expanded=\"true\"（開）/ \"false\"（閉）をトリガーに設定し、aria-controlsで対応パネルIDを指定します。パネル側にはid属性と必要に応じてrole=\"region\"を設定します。これによりスクリーンリーダーが「展開済み」「折りたたみ済み」を読み上げます（WCAG 4.1.2）。",
+  },
+  {
+    id: "rw-19",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "サービス紹介ページに収録済みの解説動画が埋め込まれているが、字幕がなかった。誰に影響がありますか？",
+    choices: [
+      "モバイルユーザーのみ",
+      "聴覚障害者、音を出せない環境のユーザー、音声言語に不慣れなユーザー",
+      "JavaScriptを無効にしているユーザーのみ",
+      "低速回線ユーザーのみ",
+    ],
+    answer: 1,
+    explanation:
+      "収録済み動画の音声には字幕（キャプション）の提供が必要です。聴覚障害者だけでなく、音を出せない環境（電車内・図書館）や第二言語として日本語を学ぶユーザーにも有用です（WCAG 1.2.2 レベルA）。",
+  },
+  {
+    id: "rw-20",
+    themeId: "real-world",
+    type: "multiple_choice",
+    question:
+      "サイトのヒーローエリアに視差スクロールアニメーションが実装されている。前庭障害（三半規管の障害）のあるユーザーへの配慮として適切な対応はどれですか？",
+    choices: [
+      "アニメーション速度を遅くする",
+      "@media (prefers-reduced-motion: reduce) でアニメーションを停止または最小化する",
+      "アニメーションをページ最下部に移動する",
+      "アニメーションをループしないようにする",
+    ],
+    answer: 1,
+    explanation:
+      "視差スクロールや大きな動きのアニメーションは前庭障害のあるユーザーに吐き気・めまいを引き起こすことがあります。OSの「視覚効果を減らす」設定がONのとき、prefers-reduced-motionメディアクエリに応じてアニメーションを停止します（WCAG 2.3.3 レベルAAA）。",
+  },
 ]

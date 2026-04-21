@@ -2,6 +2,19 @@ import type { Theme } from "../types"
 
 export const themes: Theme[] = [
   {
+    id: "real-world",
+    title: "実例から学ぶ",
+    uiPattern: "サービスサイト",
+    summary: "実際のサービスサイトでよく見つかる問題を題材に学ぶ",
+    whyItMatters:
+      "教科書的な知識だけでなく、実際のプロダクトで起きがちな問題を知ることで、レビュー・実装の精度が上がる。",
+    designerScope:
+      "ロゴリンクのalt、スキップナビ、リンクテキストの明確さなど、デザイン段階で決定できる項目が多い。",
+    engineerScope:
+      "SPAでのフォーカス管理、背景画像アイコンのaria-label、lang属性など、実装時に見落としやすいポイントを押さえる。",
+    relatedWcag: ["1.1.1", "2.4.1", "2.4.3", "2.4.4", "3.1.1", "4.1.2"],
+  },
+  {
     id: "form-labels",
     title: "フォームとラベル",
     uiPattern: "フォーム",
@@ -104,18 +117,5 @@ export const themes: Theme[] = [
     engineerScope:
       "リンクが画像のみの場合はaltで説明。同じテキストのリンクが複数あるときはaria-labelで区別する。",
     relatedWcag: ["2.4.4", "2.4.9"],
-  },
-  {
-    id: "real-world",
-    title: "実例から学ぶ",
-    uiPattern: "サービスサイト",
-    summary: "実際のサービスサイトでよく見つかる問題を題材に学ぶ",
-    whyItMatters:
-      "教科書的な知識だけでなく、実際のプロダクトで起きがちな問題を知ることで、レビュー・実装の精度が上がる。",
-    designerScope:
-      "ロゴリンクのalt、スキップナビ、リンクテキストの明確さなど、デザイン段階で決定できる項目が多い。",
-    engineerScope:
-      "SPAでのフォーカス管理、背景画像アイコンのaria-label、lang属性など、実装時に見落としやすいポイントを押さえる。",
-    relatedWcag: ["1.1.1", "2.4.1", "2.4.3", "2.4.4", "3.1.1", "4.1.2"],
   },
 ]
