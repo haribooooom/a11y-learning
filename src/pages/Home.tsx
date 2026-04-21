@@ -29,16 +29,34 @@ export function Home() {
         </p>
         <div className="flex flex-wrap gap-2">
           <Link
-            to="/wcag"
-            className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          >
-            達成基準一覧
-          </Link>
-          <Link
             to="/wcag/quiz"
             className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             全問（78問）
+          </Link>
+          <Link
+            to="/wcag/quiz?level=A"
+            className="px-4 py-2 rounded-lg bg-blue-100 text-blue-800 text-sm font-medium hover:bg-blue-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルA
+          </Link>
+          <Link
+            to="/wcag/quiz?level=AA"
+            className="px-4 py-2 rounded-lg bg-violet-100 text-violet-800 text-sm font-medium hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルAA
+          </Link>
+          <Link
+            to="/wcag/quiz?level=AAA"
+            className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルAAA
+          </Link>
+          <Link
+            to="/wcag"
+            className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-500 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            一覧を見る
           </Link>
         </div>
       </section>
