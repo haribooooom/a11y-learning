@@ -6,6 +6,7 @@ import { useProgress } from "../hooks/useProgress"
 import { QuizCard } from "../components/QuizCard"
 import { ExplanationBox } from "../components/ExplanationBox"
 import { ProgressBar } from "../components/ProgressBar"
+import { shuffle } from "../utils/shuffle"
 
 export function Quiz() {
   const { id } = useParams<{ id: string }>()
@@ -14,14 +15,15 @@ export function Quiz() {
 
   const { saveProgress } = useProgress()
 
+  const [shuffledQuestions] = useState(() => shuffle(themeQuestions))
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [score, setScore] = useState(0)
   const [done, setDone] = useState(false)
 
-  if (!theme || themeQuestions.length === 0) return <Navigate to="/" replace />
+  if (!theme || shuffledQuestions.length === 0) return <Navigate to="/" replace />
 
-  const current = themeQuestions[currentIndex]
+  const current = shuffledQuestions[currentIndex]
   const isAnswered = selected !== null
   const isCorrect = selected === current.answer
 
@@ -39,7 +41,7 @@ export function Quiz() {
   }
 
   function handleNext() {
-    if (currentIndex + 1 >= themeQuestions.length) {
+    if (currentIndex + 1 >= shuffledQuestions.length) {
       setDone(true)
     } else {
       setCurrentIndex((i) => i + 1)
@@ -52,10 +54,10 @@ export function Quiz() {
       <main className="max-w-2xl mx-auto px-4 py-10">
         <h1 className="text-xl font-bold text-gray-900 mb-2">テスト完了</h1>
         <p className="text-3xl font-bold text-blue-600 mb-1">
-          {score} / {themeQuestions.length}
+          {score} / {shuffledQuestions.length}
         </p>
         <p className="text-sm text-gray-500 mb-8">
-          正答率 {Math.round((score / themeQuestions.length) * 100)}%
+          正答率 {Math.round((score / shuffledQuestions.length) * 100)}%
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
@@ -88,8 +90,8 @@ export function Quiz() {
 
       <div className="mb-6">
         <ProgressBar
-          value={currentIndex / themeQuestions.length}
-          label={`進捗 ${currentIndex + 1}/${themeQuestions.length}`}
+          value={currentIndex / shuffledQuestions.length}
+          label={`進捗 ${currentIndex + 1}/${shuffledQuestions.length}`}
         />
       </div>
 
@@ -97,7 +99,7 @@ export function Quiz() {
       {isAnswered ? (
         <div className="space-y-4">
           <p className="text-xs text-gray-400">
-            {currentIndex + 1} / {themeQuestions.length}
+            {currentIndex + 1} / {shuffledQuestions.length}
           </p>
           <p className="text-base font-medium text-gray-900 leading-relaxed">
             {current.question}
@@ -153,14 +155,14 @@ export function Quiz() {
             onClick={handleNext}
             className="mt-2 px-6 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
-            {currentIndex + 1 >= themeQuestions.length ? "結果を見る" : "次の問題"}
+            {currentIndex + 1 >= shuffledQuestions.length ? "結果を見る" : "次の問題"}
           </button>
         </div>
       ) : (
         <QuizCard
           question={current}
           index={currentIndex}
-          total={themeQuestions.length}
+          total={shuffledQuestions.length}
           onAnswer={handleAnswer}
         />
       )}

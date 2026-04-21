@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom"
 import { wcag22 } from "../data/wcag22"
 import { ExplanationBox } from "../components/ExplanationBox"
 import { ProgressBar } from "../components/ProgressBar"
+import { shuffle } from "../utils/shuffle"
 
 const STORAGE_KEY = "a11y-wcag-progress"
 const SET_SIZE = 10
@@ -44,7 +45,7 @@ export function WcagQuiz() {
   const levelFilter = searchParams.get("level") as "A" | "AA" | "AAA" | null
 
   const questions = useMemo(
-    () => levelFilter ? wcag22.filter((c) => c.level === levelFilter) : wcag22,
+    () => shuffle(levelFilter ? wcag22.filter((c) => c.level === levelFilter) : [...wcag22]),
     [levelFilter]
   )
 
