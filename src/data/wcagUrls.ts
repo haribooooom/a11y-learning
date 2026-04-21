@@ -1,4 +1,4 @@
-const BASE = "https://www.w3.org/WAI/WCAG22/Understanding/"
+const BASE = "https://waic.jp/translations/WCAG22/#"
 
 const slugs: Record<string, string> = {
   "1.1.1": "non-text-content",
@@ -92,5 +92,5 @@ const slugs: Record<string, string> = {
 
 export function getWcagUrl(id: string): string {
   const slug = slugs[id]
-  return slug ? BASE + slug : `https://www.w3.org/TR/WCAG22/#${id}`
+  return slug ? BASE + slug : `https://waic.jp/translations/WCAG22/`
 }

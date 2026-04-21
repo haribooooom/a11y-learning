@@ -116,7 +116,7 @@ export function WcagList() {
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 text-xs text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                               >
-                                W3C Understanding {c.id}
+                                WCAG 2.2 達成基準 {c.id}（日本語訳）
                                 <span aria-hidden="true">↗</span>
                               </a>
                             </div>
