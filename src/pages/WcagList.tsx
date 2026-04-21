@@ -29,16 +29,37 @@ export function WcagList() {
       </nav>
 
       <h1 className="text-2xl font-bold text-gray-900 mb-1">WCAG 2.2 全達成基準</h1>
-      <p className="text-sm text-gray-500 mb-2">78項目 · A / AA / AAA</p>
+      <p className="text-sm text-gray-500 mb-6">78項目 · A / AA / AAA</p>
 
-      <div className="flex gap-4 mb-8">
-        <Link
-          to="/wcag/quiz"
-          className="inline-block px-5 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-        >
-          全問テストを始める（78問）
-        </Link>
-      </div>
+      <section className="mb-8 p-4 rounded-xl border border-gray-200 bg-white" aria-labelledby="quiz-heading">
+        <h2 id="quiz-heading" className="text-sm font-semibold text-gray-700 mb-3">テストを始める</h2>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            to="/wcag/quiz"
+            className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            全問（78問）
+          </Link>
+          <Link
+            to="/wcag/quiz?level=A"
+            className="px-4 py-2 rounded-lg bg-blue-100 text-blue-800 text-sm font-medium hover:bg-blue-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルA のみ
+          </Link>
+          <Link
+            to="/wcag/quiz?level=AA"
+            className="px-4 py-2 rounded-lg bg-violet-100 text-violet-800 text-sm font-medium hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルAA のみ
+          </Link>
+          <Link
+            to="/wcag/quiz?level=AAA"
+            className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-medium hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          >
+            レベルAAA のみ
+          </Link>
+        </div>
+      </section>
 
       {PRINCIPLES.map((p) => {
         const principleGuidelines = guidelines.filter((g) =>

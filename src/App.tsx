@@ -8,7 +8,7 @@ import { WcagQuiz } from "./pages/WcagQuiz"
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/a11y-learning">
       <div className="min-h-screen bg-gray-50 text-gray-900">
         <Routes>
           <Route path="/" element={<Home />} />

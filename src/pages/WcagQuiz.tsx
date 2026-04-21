@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react"
-import { Link } from "react-router-dom"
+import { useState, useCallback, useMemo } from "react"
+import { Link, useSearchParams } from "react-router-dom"
 import { wcag22 } from "../data/wcag22"
 import { ExplanationBox } from "../components/ExplanationBox"
 import { ProgressBar } from "../components/ProgressBar"
@@ -32,14 +32,28 @@ const LEVEL_COLOR: Record<string, string> = {
   AAA: "bg-gray-100 text-gray-600",
 }
 
+const LEVEL_LABEL: Record<string, string> = {
+  A: "レベルA",
+  AA: "レベルAA",
+  AAA: "レベルAAA",
+}
+
 export function WcagQuiz() {
+  const [searchParams] = useSearchParams()
+  const levelFilter = searchParams.get("level") as "A" | "AA" | "AAA" | null
+
+  const questions = useMemo(
+    () => levelFilter ? wcag22.filter((c) => c.level === levelFilter) : wcag22,
+    [levelFilter]
+  )
+
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [score, setScore] = useState(0)
   const [done, setDone] = useState(false)
 
-  const current = wcag22[index]
-  const total = wcag22.length
+  const current = questions[index]
+  const total = questions.length
   const isAnswered = selected !== null
   const isCorrect = selected === current.answer
 
@@ -67,7 +81,9 @@ export function WcagQuiz() {
     const pct = Math.round((score / total) * 100)
     return (
       <main className="max-w-2xl mx-auto px-4 py-10">
-        <h1 className="text-xl font-bold text-gray-900 mb-2">テスト完了</h1>
+        <h1 className="text-xl font-bold text-gray-900 mb-2">
+          テスト完了{levelFilter ? ` — ${LEVEL_LABEL[levelFilter]}` : ""}
+        </h1>
         <p className="text-4xl font-bold text-blue-600 mb-1">
           {score} <span className="text-xl text-gray-400">/ {total}</span>
         </p>
