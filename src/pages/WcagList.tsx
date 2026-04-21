@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { wcag22 } from "../data/wcag22"
+import { getWcagUrl } from "../data/wcagUrls"
 
 const PRINCIPLES = [
   { key: "perceivable",     label: "知覚可能",  number: "1" },
@@ -108,7 +109,16 @@ export function WcagList() {
                           </button>
                           {isOpen && (
                             <div className="px-3 py-3 text-sm text-gray-600 bg-gray-50 border border-t-0 border-gray-100 rounded-b-lg leading-relaxed">
-                              {c.description}
+                              <p className="mb-2">{c.description}</p>
+                              <a
+                                href={getWcagUrl(c.id)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs text-blue-600 underline hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                              >
+                                W3C Understanding {c.id}
+                                <span aria-hidden="true">↗</span>
+                              </a>
                             </div>
                           )}
                         </li>
