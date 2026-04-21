@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# アクセシビリティ学習サイト
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+デザイナー・エンジニア・PMがWCAGの達成基準を実践的に学ぶためのWebサイトです。
 
-Currently, two official plugins are available:
+**公開URL:** https://haribooooom.github.io/a11y-learning/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 概要
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+UIパターンごとにアクセシビリティの問題を体験し、問題に答えながら学習します。「なぜ問題なのか」「誰が困るのか」「どう直すか」をセットで理解することを目的としています。
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 学習コンテンツ
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### テーマ別学習（3テーマ）
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| テーマ | WCAG達成基準 |
+|---|---|
+| フォームとラベル | 1.3.1, 3.3.2 |
+| コントラスト | 1.4.3 |
+| フォーカス表示 | 2.4.7, 2.4.11 |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+各テーマで以下の3種類の問題を出題します。
+
+- **4択問題** — 知識を確認する
+- **UIレビュー問題** — 実際のUIの問題箇所を特定する（コード描画モック・[駒瑠市](https://a11yc.com/city-komaru/)のiframe）
+- **修正案選択問題** — 正しい修正方法を選ぶ
+
+### WCAG 2.2 全達成基準（78問）
+
+WCAG 2.2の全78達成基準を順番に学べます。各達成基準の概要・誰が困るか・どう対処するかを問題形式で確認できます。
+
+---
+
+## 機能
+
+- **進捗保存** — 回答履歴をlocalStorageに保存
+- **復習モード** — 間違えた問題だけを再出題
+- **苦手テーマ表示** — 正答率50%以下のテーマをホームでハイライト
+
+---
+
+## 技術スタック
+
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
+- React Router v7
+
+---
+
+## ローカルで動かす
+
+```bash
+cd ~/dev/a11y-learning-real
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> **注意:** iCloud Drive（パスにスペースを含むディレクトリ）ではNode.js ESMのモジュール解決が失敗するため、`~/dev/` 以下で作業してください。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 素材について
+
+UIレビュー問題の一部に[駒瑠市](https://a11yc.com/city-komaru/)を使用しています。MITライセンスで公開されています。
