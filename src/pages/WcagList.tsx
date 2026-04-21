@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { wcag22 } from "../data/wcag22"
 
@@ -15,6 +16,7 @@ const LEVEL_COLOR: Record<string, string> = {
 }
 
 export function WcagList() {
+  const [openId, setOpenId] = useState<string | null>(null)
   const guidelines = [...new Set(wcag22.map((c) => c.guideline))]
 
   return (
@@ -79,26 +81,40 @@ export function WcagList() {
                 <div key={gl} className="mb-6">
                   <h3 className="text-sm font-semibold text-gray-500 mb-2">{gl}</h3>
                   <ul className="space-y-1">
-                    {criteria.map((c) => (
-                      <li key={c.id}>
-                        <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-100 bg-white text-sm">
-                          <span className="font-mono text-xs text-gray-400 w-10 shrink-0">
-                            {c.id}
-                          </span>
-                          <span className="text-gray-800 flex-1">{c.title}</span>
-                          {c.isNewIn22 && (
-                            <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
-                              2.2新規
-                            </span>
-                          )}
-                          <span
-                            className={`text-xs px-1.5 py-0.5 rounded font-medium ${LEVEL_COLOR[c.level]}`}
+                    {criteria.map((c) => {
+                      const isOpen = openId === c.id
+                      return (
+                        <li key={c.id}>
+                          <button
+                            type="button"
+                            onClick={() => setOpenId(isOpen ? null : c.id)}
+                            aria-expanded={isOpen}
+                            className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-100 bg-white text-sm hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                           >
-                            {c.level}
-                          </span>
-                        </div>
-                      </li>
-                    ))}
+                            <span className="font-mono text-xs text-gray-400 w-10 shrink-0">
+                              {c.id}
+                            </span>
+                            <span className="text-gray-800 flex-1">{c.title}</span>
+                            {c.isNewIn22 && (
+                              <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded">
+                                2.2新規
+                              </span>
+                            )}
+                            <span
+                              className={`text-xs px-1.5 py-0.5 rounded font-medium ${LEVEL_COLOR[c.level]}`}
+                            >
+                              {c.level}
+                            </span>
+                            <span className="text-gray-400 text-xs ml-1">{isOpen ? "▲" : "▼"}</span>
+                          </button>
+                          {isOpen && (
+                            <div className="px-3 py-3 text-sm text-gray-600 bg-gray-50 border border-t-0 border-gray-100 rounded-b-lg leading-relaxed">
+                              {c.description}
+                            </div>
+                          )}
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
               )
